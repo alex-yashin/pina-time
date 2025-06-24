@@ -36,17 +36,18 @@ class DateType extends DateTimeType
     }
 
     /**
-     * @param mixed $date
+     * @param mixed $value
      * @return string
      * @throws Exception
      */
-    public function format($date): string
+    public function format($value): string
     {
-        if (empty($date) || $date === '0000-00-00 00:00:00' || $date === "0000-00-00") {
+        //TODO: переработай значения по умолчанию на уровне поля
+        if (empty($value) || $value === '0000-00-00 00:00:00' || $value === "0000-00-00" || $value === "CURRENT_TIMESTAMP") {
             return '';
         }
 
-        $d = new DateTime($date);
+        $d = new DateTime($value);
         return $d->format($this->userFormat);
     }
 

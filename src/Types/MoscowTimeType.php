@@ -12,13 +12,14 @@ use function Pina\__;
 
 class MoscowTimeType extends TimeType
 {
-    public function format($date): string
+    public function format($value): string
     {
-        if (empty($date) || $date === '0000-00-00 00:00:00' || $date === "0000-00-00") {
+        //TODO: переработай значения по умолчанию на уровне поля
+        if (empty($value) || $value === '0000-00-00 00:00:00' || $value === "0000-00-00" || $value === "CURRENT_TIMESTAMP") {
             return '';
         }
 
-        $d = DateTime::createFromServerFormat($this->serverFormat, $date);
+        $d = DateTime::createFromServerFormat($this->serverFormat, $value);
         $d->setMoscowTimeZone();
         return $d->format($this->userFormat);
     }
