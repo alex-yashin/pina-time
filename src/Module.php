@@ -13,7 +13,7 @@ class Module implements ModuleInterface
 
     public function __construct()
     {
-        App::types()->share(TimestampType::class, DateTimeType::class);
+        App::types()->set(TimestampType::class, DateTimeType::class);
     }
 
     public function getPath()
